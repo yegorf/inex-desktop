@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #bcffd5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.GeneralController">
+    <children>
+        <AnchorPane layoutY="195.0" prefHeight="540.0" prefWidth="1002.0" style="-fx-background-color: #2d7a55;">
+         <children>
+            <Label layoutX="266.0" layoutY="33.0" prefHeight="33.0" prefWidth="0.0" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="nameLabel" layoutX="246.0" layoutY="17.0" text="Aloha, username! Got a lot of money today?" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="28.0" />
+               </font>
+            </Label>
+         </children>
+        </AnchorPane>
+        <Label layoutX="30.0" layoutY="29.0" text="inex ">
+            <font>
+                <Font name="Franklin Gothic Medium Cond" size="64.0" />
+            </font>
+        </Label>
+        <Label layoutX="137.0" layoutY="20.0" text="manage your money - manage your life">
+            <font>
+                <Font name="Franklin Gothic Medium Cond" size="34.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

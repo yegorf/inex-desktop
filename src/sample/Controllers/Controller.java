@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -88,20 +89,25 @@ public class Controller {
 
         if(counter >= 1){
 
-            openNewScene("/sample/fxml_files/app.fxml");
+            u = user;
+            openNewScene("/sample/fxml_files/general.fxml");
 
         }
         else {
-          //  Shake userLoginAnim = new Shake(loginField);
-         //   Shake userPassAnim = new Shake(passwordField);
-         //   userLoginAnim.playAnim();
-         //   userPassAnim.playAnim();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Incorrect username or password");
+            alert.showAndWait().ifPresent(rs -> {
+
+            });
         }
     }
 
     public void openNewScene(String window)
     {
-       // loginSignUpButton.getScene().getWindow().hide();
+        signUpButton.getScene().getWindow().hide();
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
@@ -115,5 +121,7 @@ public class Controller {
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }
+
+    public static User u;
 }
 
