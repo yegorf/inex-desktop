@@ -1,4 +1,4 @@
-package sample;
+package sample.Entries;
 
 public class User {
     private String username;
@@ -7,7 +7,8 @@ public class User {
 
     public User(){ }
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email)
+    {
         this.username = username;
         this.password = password;
         this.email = email;

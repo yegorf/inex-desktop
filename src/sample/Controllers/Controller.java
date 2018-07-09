@@ -13,8 +13,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.CurrentUser;
 import sample.DB.DatabaseHandler;
-import sample.User;
+import sample.Entries.User;
 
 public class Controller {
 
@@ -37,7 +38,8 @@ public class Controller {
     private TextField loginField;
 
     @FXML
-    void initialize() {
+    void initialize()
+    {
 
         signInButton.setOnAction(event -> {
             String loginText = loginField.getText().trim();
@@ -56,29 +58,20 @@ public class Controller {
 
 
         signUpButton.setOnAction(event -> {
-            signUpButton.getScene().getWindow().hide();
+            openNewScene("/sample/fxml_files/registration.fxml");
 
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/fxml_files/registration.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
         });
 
     }
 
-    private void loginUser(String loginText, String loginPassword) throws SQLException {
+    private void loginUser(String loginText, String loginPassword) throws SQLException
+    {
         DatabaseHandler dbHandler = new DatabaseHandler();
+
         User user = new User();
         user.setUsername(loginText);
         user.setPassword(loginPassword);
+
         ResultSet result = dbHandler.getUser(user);
 
         int counter = 0;
@@ -87,9 +80,10 @@ public class Controller {
             counter++;
         }
 
-        if(counter >= 1){
+        if(counter >= 1) {
 
-            u = user;
+            CurrentUser.username = loginText;
+            CurrentUser.password = loginPassword;
             openNewScene("/sample/fxml_files/general.fxml");
 
         }
@@ -119,9 +113,7 @@ public class Controller {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.showAndWait();
+        stage.show();
     }
 
-    public static User u;
 }
-

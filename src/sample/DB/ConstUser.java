@@ -1,6 +1,7 @@
 package sample.DB;
 
-public class ConstUser {
+public class ConstUser
+{
 
     public static final String TABLE = "user";
     public static final String ID = "id_user";
