@@ -5,7 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,9 +17,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import sample.CurrentUser;
 import sample.DB.DatabaseHandler;
+import sample.Entries.Currency;
 import sample.Entries.Income;
 import sample.Entries.Money;
 import sample.Entries.User;
+import sample.RateParser;
+
 
 public class GeneralController {
 
@@ -42,6 +47,10 @@ public class GeneralController {
     @FXML
     private TableColumn<Income, String> reasonColumn;
 
+
+    @FXML
+    private TableColumn<Income, String> currencyColumn;
+
     @FXML
     private Label eurLabel;
 
@@ -64,21 +73,39 @@ public class GeneralController {
     private Button signOutButton;
 
     @FXML
+    private RadioButton usdRB;
+
+    @FXML
+    private RadioButton rubRB;
+
+    @FXML
+    private RadioButton uahRB;
+
+    @FXML
+    private RadioButton eurRB;
+
+    @FXML
+    private RadioButton incomeRB;
+
+    @FXML
+    private RadioButton expendRB;
+
+    @FXML
+    private Button addButton;
+
+    @FXML
+    private TextField sumTextBox;
+
+    @FXML
+    private TextField reasonTextBox;
+
+    @FXML
     void initialize() {
 
-        Document doc = null;
+        RateParser rateParser = new RateParser();
 
-        try {
-            doc = Jsoup.connect("https://www.yandex.ru/").get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Element kursUSD = doc.select(".inline-stocks__value_inner").first();
-        Element kursEUR = doc.select(".inline-stocks__value_inner").last();
-
-        usdLabel.setText(kursUSD.text());
-        eurLabel.setText(kursEUR.text());
+        usdLabel.setText(rateParser.getUsdRate());
+        eurLabel.setText(rateParser.getEurRate());
 
         String hello = "Hello " + CurrentUser.username + "! " +
                 "Got a lot of money today?";
@@ -93,6 +120,7 @@ public class GeneralController {
         nowUsd.setText("USD: " + incomeList.get(2).toString());
         nowEur.setText("EUR: " + incomeList.get(3).toString());
 
+        currencyColumn.setCellValueFactory(new PropertyValueFactory<>("Currency"));
         sumColumn.setCellValueFactory(new PropertyValueFactory<>("Sum"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
         reasonColumn.setCellValueFactory(new PropertyValueFactory<>("Reason"));
@@ -102,11 +130,52 @@ public class GeneralController {
         signOutButton.setOnAction(event -> {
             openNewScene("/sample/fxml_files/sample.fxml");
         });
+
+        addButton.setOnAction(event -> {
+
+            Date dateNow = new Date();
+            SimpleDateFormat formatForDateNow =
+                    new SimpleDateFormat("yyyy-MM-dd");
+
+            Income income = new Income();
+
+            income.setSum(Double.parseDouble(sumTextBox.getText()));
+            income.setReason(reasonTextBox.getText());
+            income.setDate(formatForDateNow.format(dateNow));
+
+            if(incomeRB.isSelected()) {
+                income.setPositive(true);
+            } else {
+                income.setPositive(false);
+            }
+
+            if(rubRB.isSelected()) {
+                income.setCurrency(Currency.RUB);
+            }
+            else if(uahRB.isSelected()) {
+                income.setCurrency(Currency.UAH);
+            }
+            else if(usdRB.isSelected()) {
+                income.setCurrency(Currency.USD);
+            }
+            else if(eurRB.isSelected()) {
+                income.setCurrency(Currency.EUR);
+            }
+
+            dbHandler.addIncome(income);
+            clearAddParameters();
+
+        });
     }
 
+    public void clearAddParameters() {
+        sumTextBox.clear();
+        reasonTextBox.clear();
+        rubRB.setSelected(true);
+        incomeRB.setSelected(true);
+    }
 
-    public void openNewScene(String window)
-    {
+    public void openNewScene(String window) {
         signOutButton.getScene().getWindow().hide();
 
         FXMLLoader loader = new FXMLLoader();

@@ -94,13 +94,40 @@ public class DatabaseHandler extends Configs {
             prSt.setString(2,user.getPassword());
             prSt.setString(3,user.getEmail());
 
-
             prSt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void addIncome(Income income) {
+
+        String insert = "INSERT INTO " + ConstIncome.TABLE + "(" +
+                ConstIncome.USER + "," + ConstIncome.SUM + "," +
+                ConstIncome.DATE + "," + ConstIncome.REASON + "," +
+                ConstIncome.POS + "," + ConstIncome.CURRENCY + ")" +
+                "VALUES(?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(insert);
+
+            prSt.setString(1, CurrentUser.username);
+            prSt.setDouble(2, income.getSum());
+            prSt.setString(3, income.getDate());
+            prSt.setString(4, income.getReason());
+            prSt.setBoolean(5, income.isPositive());
+            prSt.setString(6, income.getCurrency().toString());
+
+            prSt.executeUpdate(); //----------!!!!
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public ResultSet getUser(User user) {
