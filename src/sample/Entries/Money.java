@@ -72,6 +72,4 @@ public class Money {
 
         return arrayList;
     }
-
-
 }

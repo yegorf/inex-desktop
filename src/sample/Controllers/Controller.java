@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 import sample.CurrentUser;
 import sample.DB.DatabaseHandler;
 import sample.Entries.User;
+import sample.mail.MailChecking;
+
+import javax.mail.MessagingException;
 
 public class Controller {
 
@@ -38,9 +41,7 @@ public class Controller {
     private TextField loginField;
 
     @FXML
-    void initialize()
-    {
-
+    void initialize() {
         signInButton.setOnAction(event -> {
             String loginText = loginField.getText().trim();
             String loginPassword = passwordField.getText().trim();
@@ -56,51 +57,40 @@ public class Controller {
             else {System.out.println("Error empty");}
         });
 
-
         signUpButton.setOnAction(event -> {
             openNewScene("/sample/fxml_files/registration.fxml");
-
         });
-
     }
 
-    private void loginUser(String loginText, String loginPassword) throws SQLException
-    {
+    private void loginUser(String loginText, String loginPassword) throws SQLException {
         DatabaseHandler dbHandler = new DatabaseHandler();
-
         User user = new User();
         user.setUsername(loginText);
         user.setPassword(loginPassword);
 
         ResultSet result = dbHandler.getUser(user);
-
         int counter = 0;
 
-        while(result.next()){
+        while(result.next()) {
             counter++;
         }
 
         if(counter >= 1) {
-
             CurrentUser.username = loginText;
             CurrentUser.password = loginPassword;
             openNewScene("/sample/fxml_files/general.fxml");
-
         }
         else {
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText("Error");
             alert.setContentText("Incorrect username or password");
             alert.showAndWait().ifPresent(rs -> {
-
             });
         }
     }
 
-    public void openNewScene(String window)
-    {
+    public void openNewScene(String window) {
         signUpButton.getScene().getWindow().hide();
 
         FXMLLoader loader = new FXMLLoader();
@@ -115,5 +105,4 @@ public class Controller {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
 }

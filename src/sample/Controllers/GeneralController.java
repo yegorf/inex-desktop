@@ -22,15 +22,10 @@ import sample.Entries.Income;
 import sample.Entries.Money;
 import sample.Entries.User;
 import sample.RateParser;
+import sample.usdConverter;
 
 
 public class GeneralController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Label nameLabel;
@@ -47,7 +42,6 @@ public class GeneralController {
     @FXML
     private TableColumn<Income, String> reasonColumn;
 
-
     @FXML
     private TableColumn<Income, String> currencyColumn;
 
@@ -56,6 +50,18 @@ public class GeneralController {
 
     @FXML
     private Label usdLabel;
+
+    @FXML
+    private Label rubLabel;
+
+    @FXML
+    private Label eurLabel1;
+
+    @FXML
+    private Label usdLabel1;
+
+    @FXML
+    private Label rubLabel1;
 
     @FXML
     private Label nowRub;
@@ -88,9 +94,6 @@ public class GeneralController {
     private RadioButton incomeRB;
 
     @FXML
-    private RadioButton expendRB;
-
-    @FXML
     private Button addButton;
 
     @FXML
@@ -100,72 +103,113 @@ public class GeneralController {
     private TextField reasonTextBox;
 
     @FXML
+    private Label totalUsdLabel;
+
+    @FXML
     void initialize() {
 
-        RateParser rateParser = new RateParser();
+        hello();
 
-        usdLabel.setText(rateParser.getUsdRate());
-        eurLabel.setText(rateParser.getEurRate());
-
-        String hello = "Hello " + CurrentUser.username + "! " +
-                "Got a lot of money today?";
-        nameLabel.setText(hello);
-
+        usdConverter converter = new usdConverter();
         DatabaseHandler dbHandler = new DatabaseHandler();
-        Money money = dbHandler.getAllIncome();
-        ArrayList<Double> incomeList = money.getIncome();
+        RateParser rateParser = new RateParser();
+        ArrayList<Double> incomeList = showTable(dbHandler);
 
-        nowRub.setText("RUB: " + incomeList.get(0).toString());
-        nowUah.setText("UAH: " + incomeList.get(1).toString());
-        nowUsd.setText("USD: " + incomeList.get(2).toString());
-        nowEur.setText("EUR: " + incomeList.get(3).toString());
+        showCurrentScore(incomeList);
+        setRates(rateParser);
 
-        currencyColumn.setCellValueFactory(new PropertyValueFactory<>("Currency"));
-        sumColumn.setCellValueFactory(new PropertyValueFactory<>("Sum"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
-        reasonColumn.setCellValueFactory(new PropertyValueFactory<>("Reason"));
-
-        incomeTable.setItems(money.getList());
+        double sum = convertMoney(converter,incomeList,rateParser);
+        totalUsdLabel.setText(Double.toString(Math.rint(100.0*sum)/100.0)+" $");
 
         signOutButton.setOnAction(event -> {
             openNewScene("/sample/fxml_files/sample.fxml");
         });
 
         addButton.setOnAction(event -> {
-
-            Date dateNow = new Date();
-            SimpleDateFormat formatForDateNow =
-                    new SimpleDateFormat("yyyy-MM-dd");
-
-            Income income = new Income();
-
-            income.setSum(Double.parseDouble(sumTextBox.getText()));
-            income.setReason(reasonTextBox.getText());
-            income.setDate(formatForDateNow.format(dateNow));
-
-            if(incomeRB.isSelected()) {
-                income.setPositive(true);
-            } else {
-                income.setPositive(false);
-            }
-
-            if(rubRB.isSelected()) {
-                income.setCurrency(Currency.RUB);
-            }
-            else if(uahRB.isSelected()) {
-                income.setCurrency(Currency.UAH);
-            }
-            else if(usdRB.isSelected()) {
-                income.setCurrency(Currency.USD);
-            }
-            else if(eurRB.isSelected()) {
-                income.setCurrency(Currency.EUR);
-            }
-
-            dbHandler.addIncome(income);
-            clearAddParameters();
-
+            addIncome(dbHandler);
+            showTable(dbHandler);
         });
+    }
+
+    public void addIncome(DatabaseHandler dbHandler) {
+        Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow =
+                new SimpleDateFormat("yyyy-MM-dd");
+
+
+        Income income = new Income();
+
+        income.setSum(Double.parseDouble(sumTextBox.getText()));
+        income.setReason(reasonTextBox.getText());
+        income.setDate(formatForDateNow.format(dateNow));
+
+        if(incomeRB.isSelected()) {
+            income.setPositive(true);
+        } else {
+            income.setPositive(false);
+        }
+
+        if(rubRB.isSelected()) {
+            income.setCurrency(Currency.RUB);
+        }
+        else if(uahRB.isSelected()) {
+            income.setCurrency(Currency.UAH);
+        }
+        else if(usdRB.isSelected()) {
+            income.setCurrency(Currency.USD);
+        }
+        else if(eurRB.isSelected()) {
+            income.setCurrency(Currency.EUR);
+        }
+
+        dbHandler.addIncome(income);
+        clearAddParameters();
+    }
+
+    public double convertMoney(usdConverter converter,
+                               ArrayList<Double> incomeList,
+                               RateParser rateParser) {
+        converter.convertUah(incomeList.get(1), Double.parseDouble(rateParser.getSellUsdRate()));
+        converter.convertRub(incomeList.get(0), Double.parseDouble(rateParser.getSellRubRate()), Double.parseDouble(rateParser.getSellUsdRate()));
+        converter.convertEur(incomeList.get(3), Double.parseDouble(rateParser.getSellUsdRate()), Double.parseDouble(rateParser.getSellEurRate()));
+
+        double sum = converter.getValue() + incomeList.get(2);
+        return sum;
+    }
+
+    public void setRates(RateParser rateParser) {
+        usdLabel.setText(rateParser.getBuyUsdRate());
+        eurLabel.setText(rateParser.getBuyEurRate());
+        rubLabel.setText(rateParser.getBuyRubRate());
+        usdLabel1.setText(rateParser.getSellUsdRate());
+        eurLabel1.setText(rateParser.getSellEurRate());
+        rubLabel1.setText(rateParser.getSellRubRate());
+    }
+
+    public void showCurrentScore(ArrayList<Double> incomeList) {
+        nowRub.setText("RUB: " + incomeList.get(0).toString());
+        nowUah.setText("UAH: " + incomeList.get(1).toString());
+        nowUsd.setText("USD: " + incomeList.get(2).toString());
+        nowEur.setText("EUR: " + incomeList.get(3).toString());
+    }
+
+    public void hello() {
+        String hello = "Hello " + CurrentUser.username + "! " +
+                "Got a lot of money today?";
+        nameLabel.setText(hello);
+    }
+
+    public ArrayList<Double> showTable(DatabaseHandler dbHandler) {
+        Money money = dbHandler.getAllIncome();
+        ArrayList<Double> incomeList = money.getIncome();
+
+        currencyColumn.setCellValueFactory(new PropertyValueFactory<>("Currency"));
+        sumColumn.setCellValueFactory(new PropertyValueFactory<>("Sum"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        reasonColumn.setCellValueFactory(new PropertyValueFactory<>("Reason"));
+        incomeTable.setItems(money.getList());
+
+        return incomeList;
     }
 
     public void clearAddParameters() {
@@ -190,5 +234,4 @@ public class GeneralController {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
 }

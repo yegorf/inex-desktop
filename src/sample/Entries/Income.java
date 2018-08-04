@@ -1,7 +1,6 @@
 package sample.Entries;
 
-public class Income
-{
+public class Income {
     private double sum;
     private String date;
     private String reason;
@@ -10,8 +9,7 @@ public class Income
 
     public Income() { }
 
-    public Income(double sum, String date)
-    {
+    public Income(double sum, String date) {
         this.sum = sum;
         this.date = date;
     }

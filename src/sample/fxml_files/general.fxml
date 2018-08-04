@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -28,128 +29,196 @@
                   <TableColumn fx:id="reasonColumn" prefWidth="493.0" text="Reason" />
               </columns>
             </TableView>
-            <TextField fx:id="sumTextBox" layoutX="266.0" layoutY="56.0" />
-            <TextField fx:id="reasonTextBox" layoutX="264.0" layoutY="99.0" prefHeight="25.0" prefWidth="520.0" />
-            <Label layoutX="220.0" layoutY="57.0" text="Sum" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="196.0" layoutY="100.0" text="Reason" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="30.0" layoutY="14.0" text="Now you have" textFill="WHITE">
+            <AnchorPane layoutX="771.0" layoutY="-1.0" prefHeight="205.0" prefWidth="232.0" style="-fx-background-color: #d9e0a3;">
+               <children>
+                  <TextField fx:id="sumTextBox" layoutX="6.0" layoutY="29.0" />
+                  <Label layoutX="6.0" layoutY="3.0" text="Sum" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="6.0" layoutY="54.0" text="Reason" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="reasonTextBox" layoutX="6.0" layoutY="76.0" prefHeight="25.0" prefWidth="149.0" />
+                  <RadioButton fx:id="rubRB" layoutX="161.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="RUB" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="15.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="currencyGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="uahRB" layoutX="161.0" layoutY="41.0" mnemonicParsing="false" text="UAH" textFill="#495146" toggleGroup="$currencyGroup">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="usdRB" layoutX="161.0" layoutY="67.0" mnemonicParsing="false" text="USD" textFill="#495146" toggleGroup="$currencyGroup">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="eurRB" layoutX="161.0" layoutY="95.0" mnemonicParsing="false" text="EUR" textFill="#495146" toggleGroup="$currencyGroup">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="incomeRB" layoutX="8.0" layoutY="115.0" mnemonicParsing="false" selected="true" text="Income" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="15.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="typeGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="expendRB" layoutX="88.0" layoutY="115.0" mnemonicParsing="false" text="Expend" textFill="#495146" toggleGroup="$typeGroup">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <Button fx:id="addButton" layoutX="66.0" layoutY="139.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="114.0" style="-fx-background-color: #bcffd5; -fx-border-color: #2d7a55; -fx-border-width: 3;" text="Add">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="205.0" prefWidth="224.0" style="-fx-background-color: #d9e0a3;">
+               <children>
+                  <Label layoutX="14.0" layoutY="7.0" text="Now you have:" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nowRub" layoutX="70.0" layoutY="51.0" text="RUB: 100" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nowUah" layoutX="71.0" layoutY="83.0" text="UAH: 100" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nowEur" layoutX="71.0" layoutY="118.0" text="EUR: 100" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nowUsd" layoutX="71.0" layoutY="153.0" text="USD: 100" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label fx:id="s21" layoutX="334.0" layoutY="14.0" text="All your money in usd:" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Demi" size="23.0" />
                </font>
             </Label>
-            <Label fx:id="nowRub" layoutX="50.0" layoutY="53.0" text="RUB: 100" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="23.0" />
-               </font>
-            </Label>
-            <Label fx:id="nowUah" layoutX="51.0" layoutY="85.0" text="UAH: 100" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="23.0" />
-               </font>
-            </Label>
-            <Label fx:id="nowEur" layoutX="51.0" layoutY="120.0" text="EUR: 100" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="23.0" />
-               </font>
-            </Label>
-            <Label fx:id="nowUsd" layoutX="51.0" layoutY="155.0" text="USD: 100" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="23.0" />
-               </font>
-            </Label>
-            <Label layoutX="857.0" layoutY="56.0" text="USD:" textFill="#fdff87">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="23.0" />
-               </font>
-            </Label>
-            <Label layoutX="857.0" layoutY="89.0" text="EUR:" textFill="#fdff87">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="23.0" />
-               </font>
-            </Label>
-            <Label fx:id="usdLabel" layoutX="915.0" layoutY="56.0" text="usd" textFill="#fdff87">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="23.0" />
-               </font>
-            </Label>
-            <Label fx:id="eurLabel" layoutX="916.0" layoutY="89.0" text="eur" textFill="#fdff87">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="23.0" />
-               </font>
-            </Label>
-            <RadioButton fx:id="rubRB" layoutX="449.0" layoutY="57.0" mnemonicParsing="false" selected="true" text="RUB" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="15.0" />
-               </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="currencyGroup" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="uahRB" layoutX="524.0" layoutY="55.0" mnemonicParsing="false" text="UAH" textFill="WHITE" toggleGroup="$currencyGroup">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="15.0" />
-               </font>
-            </RadioButton>
-            <RadioButton fx:id="usdRB" layoutX="593.0" layoutY="55.0" mnemonicParsing="false" text="USD" textFill="WHITE" toggleGroup="$currencyGroup">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="15.0" />
-               </font>
-            </RadioButton>
-            <RadioButton fx:id="eurRB" layoutX="663.0" layoutY="55.0" mnemonicParsing="false" text="EUR" textFill="WHITE" toggleGroup="$currencyGroup">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="15.0" />
-               </font>
-            </RadioButton>
-            <RadioButton fx:id="incomeRB" layoutX="266.0" layoutY="136.0" mnemonicParsing="false" selected="true" text="Income" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="15.0" />
-               </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="typeGroup" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="expendRB" layoutX="362.0" layoutY="136.0" mnemonicParsing="false" text="Expend" textFill="WHITE" toggleGroup="$typeGroup">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="15.0" />
-               </font>
-            </RadioButton>
-            <Button fx:id="addButton" layoutX="457.0" layoutY="136.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="114.0" style="-fx-background-color: #bcffd5;" text="Add">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="20.0" />
-               </font></Button>
-            <Label layoutX="831.0" layoutY="15.0" text="Exchange rate" textFill="WHITE">
+            <Label fx:id="totalUsdLabel" layoutX="560.0" layoutY="14.0" prefHeight="26.0" prefWidth="158.0" text="3000" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Demi" size="23.0" />
                </font>
             </Label>
          </children>
         </AnchorPane>
-        <Label layoutX="30.0" layoutY="29.0" text="inex ">
+        <Label layoutX="14.0" layoutY="16.0" text="inex ">
             <font>
-                <Font name="Franklin Gothic Medium Cond" size="64.0" />
+                <Font name="Franklin Gothic Medium Cond" size="60.0" />
             </font>
         </Label>
-        <Label layoutX="137.0" layoutY="20.0" text="manage your money - manage your life">
+        <Label layoutX="108.0" layoutY="10.0" text="manage your money - manage your life">
             <font>
-                <Font name="Franklin Gothic Medium Cond" size="34.0" />
+                <Font name="Franklin Gothic Medium Cond" size="30.0" />
             </font>
         </Label>
-      <Button fx:id="signOutButton" layoutX="851.0" layoutY="17.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="131.0" style="-fx-background-color: #2d7a55;" text="Sign out " textFill="WHITE">
+      <Button fx:id="signOutButton" layoutX="14.0" layoutY="95.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="131.0" style="-fx-background-color: #2d7a55; -fx-border-color: #000000; -fx-border-width: 3;" text="Sign out " textFill="WHITE">
          <font>
             <Font name="Franklin Gothic Demi" size="18.0" />
          </font></Button>
-      <Label fx:id="nameLabel" layoutX="282.0" layoutY="142.0" text="Aloha, username! Got a lot of money today?">
+      <Label fx:id="nameLabel" layoutX="238.0" layoutY="156.0" text="Aloha, username! Got a lot of money today?">
          <font>
             <Font name="Franklin Gothic Medium" size="28.0" />
          </font>
       </Label>
+      <AnchorPane layoutX="688.0" layoutY="16.0" prefHeight="131.0" prefWidth="300.0" style="-fx-background-color: #d9e0a3; -fx-border-color: A3A46E; -fx-border-width: 3;">
+         <children>
+            <Label layoutX="77.0" layoutY="1.0" text="Exchange rate" textFill="#bc7d00">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="41.0" text="USD:" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="67.0" text="EUR:" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="usdLabel" layoutX="71.0" layoutY="41.0" text="usd" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="eurLabel" layoutX="73.0" layoutY="67.0" text="eur" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="rubLabel" layoutX="73.0" layoutY="93.0" text="rub" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="11.0" layoutY="93.0" text="RUB:" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="rubLabel1" layoutX="189.0" layoutY="93.0" text="rub" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="eurLabel1" layoutX="189.0" layoutY="67.0" text="eur" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="usdLabel1" layoutX="187.0" layoutY="41.0" text="usd" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="s" layoutX="165.0" layoutY="41.0" text="|" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="s1" layoutX="165.0" layoutY="93.0" text="|" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="s2" layoutX="165.0" layoutY="93.0" text="|" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="s3" layoutX="165.0" layoutY="67.0" text="|" textFill="#466f57">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

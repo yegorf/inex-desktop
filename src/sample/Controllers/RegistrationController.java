@@ -34,9 +34,7 @@ public class RegistrationController {
     private PasswordField regPasswordField;
 
     @FXML
-    void initialize()
-    {
-
+    void initialize() {
         DatabaseHandler dbHandler = new DatabaseHandler();
 
         regSignUpButton.setOnAction(event -> {
@@ -47,13 +45,10 @@ public class RegistrationController {
             dbHandler.signUpUser(user);
 
             openNewScene("/sample/fxml_files/sample.fxml");
-
         });
-
     }
 
-    public void openNewScene(String window)
-    {
+    public void openNewScene(String window) {
         regSignUpButton.getScene().getWindow().hide();
 
         FXMLLoader loader = new FXMLLoader();
