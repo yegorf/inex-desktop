@@ -14,7 +14,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class DatabaseHandler extends Configs {
+public class DatabaseHandler implements Configs {
 
     Connection dbConnection;
 
@@ -25,13 +25,31 @@ public class DatabaseHandler extends Configs {
                 + dbPort +"/" +dbName + "?" +
                 "autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
-        //Class.forName("com.mysql.jdbc.Driver");
         dbConnection = DriverManager.getConnection(connectionString,
                 dbUser, dbPass);
 
         return dbConnection;
     }
 
+
+    public ArrayList<User> getAllUsersInformation() throws SQLException, ClassNotFoundException {
+        final char dm = (char)34;
+        ArrayList<User> usersList = new ArrayList<User>();
+        String select = "SELECT * FROM " + ConstUser.TABLE;
+
+        Statement statement = getDbConnection().createStatement();
+        ResultSet resSet = statement.executeQuery(select);
+
+        while(resSet.next()) {
+            User user = new User();
+            user.setUsername(resSet.getString(1));
+            user.setPassword(resSet.getString(2));
+            user.setEmail(resSet.getString(3));
+            usersList.add(user);
+        }
+
+        return usersList;
+    }
 
     public Money getAllIncome() {
 
@@ -80,7 +98,6 @@ public class DatabaseHandler extends Configs {
     }
 
 
-
     public void signUpUser(User user) {
 
         String insert = "INSERT INTO " + ConstUser.TABLE + "(" +
@@ -120,7 +137,7 @@ public class DatabaseHandler extends Configs {
             prSt.setBoolean(5, income.isPositive());
             prSt.setString(6, income.getCurrency().toString());
 
-            prSt.executeUpdate(); //----------!!!!
+            prSt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -151,5 +168,4 @@ public class DatabaseHandler extends Configs {
 
         return resSet;
     }
-
 }

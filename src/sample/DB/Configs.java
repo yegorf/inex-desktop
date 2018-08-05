@@ -1,10 +1,9 @@
 package sample.DB;
 
-public class Configs
-{
-    protected String dbHost = "localhost";
-    protected String dbPort = "3306";
-    protected String dbUser = "root";
-    protected String dbPass = "Njxrfnbht123";
-    protected String dbName = "inexbd";
+public interface Configs {
+    String dbHost = "localhost";
+    String dbPort = "3306";
+    String dbUser = "root";
+    String dbPass = "Njxrfnbht123";
+    String dbName = "inexbd";
 }

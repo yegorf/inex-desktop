@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import sample.CurrentUser;
 import sample.DB.DatabaseHandler;
 import sample.Entries.User;
+import sample.MyAlert;
 import sample.mail.MailChecking;
 
 import javax.mail.MessagingException;
@@ -42,6 +43,7 @@ public class Controller {
 
     @FXML
     void initialize() {
+
         signInButton.setOnAction(event -> {
             String loginText = loginField.getText().trim();
             String loginPassword = passwordField.getText().trim();
@@ -81,12 +83,7 @@ public class Controller {
             openNewScene("/sample/fxml_files/general.fxml");
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error");
-            alert.setContentText("Incorrect username or password");
-            alert.showAndWait().ifPresent(rs -> {
-            });
+            MyAlert.show("Error","Incorrect username or password");
         }
     }
 

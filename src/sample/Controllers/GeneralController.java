@@ -1,4 +1,5 @@
 package sample.Controllers;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,7 +29,7 @@ import sample.usdConverter;
 public class GeneralController {
 
     @FXML
-    private Label nameLabel;
+    private Label usernameLabel;
 
     @FXML
     private TableColumn<Income, String> sumColumn;
@@ -106,9 +107,10 @@ public class GeneralController {
     private Label totalUsdLabel;
 
     @FXML
-    void initialize() {
+    private Label monthLabel;
 
-        hello();
+    @FXML
+    void initialize() {
 
         usdConverter converter = new usdConverter();
         DatabaseHandler dbHandler = new DatabaseHandler();
@@ -129,6 +131,13 @@ public class GeneralController {
             addIncome(dbHandler);
             showTable(dbHandler);
         });
+    }
+
+    public String getCurrentMontYear() {
+        Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow =
+                new SimpleDateFormat("dd-mm-yyyy");
+        return formatForDateNow.format(dateNow);
     }
 
     public void addIncome(DatabaseHandler dbHandler) {
@@ -191,12 +200,6 @@ public class GeneralController {
         nowUah.setText("UAH: " + incomeList.get(1).toString());
         nowUsd.setText("USD: " + incomeList.get(2).toString());
         nowEur.setText("EUR: " + incomeList.get(3).toString());
-    }
-
-    public void hello() {
-        String hello = "Hello " + CurrentUser.username + "! " +
-                "Got a lot of money today?";
-        nameLabel.setText(hello);
     }
 
     public ArrayList<Double> showTable(DatabaseHandler dbHandler) {

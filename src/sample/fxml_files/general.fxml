@@ -88,65 +88,55 @@
             </AnchorPane>
             <AnchorPane prefHeight="205.0" prefWidth="224.0" style="-fx-background-color: #d9e0a3;">
                <children>
-                  <Label layoutX="14.0" layoutY="7.0" text="Now you have:" textFill="#495146">
+                  <Label layoutX="47.0" layoutY="7.0" text="Now you have:" textFill="#495146">
                      <font>
                         <Font name="Franklin Gothic Demi" size="23.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nowRub" layoutX="70.0" layoutY="51.0" text="RUB: 100" textFill="#495146">
+                  <Label fx:id="nowRub" layoutX="70.0" layoutY="50.0" text="RUB: 100" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nowUah" layoutX="71.0" layoutY="82.0" text="UAH: 100" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nowEur" layoutX="71.0" layoutY="117.0" text="EUR: 100" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nowUsd" layoutX="71.0" layoutY="152.0" text="USD: 100" textFill="#495146">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="381.0" layoutY="156.0" prefHeight="36.0" prefWidth="242.0" style="-fx-background-color: #bcffd5; -fx-border-color: A3A46E; -fx-border-width: 3;">
+               <children>
+                  <Label fx:id="s21" layoutX="53.0" layoutY="5.0" prefHeight="26.0" prefWidth="85.0" text="Total: ">
                      <font>
                         <Font name="Franklin Gothic Demi" size="23.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nowUah" layoutX="71.0" layoutY="83.0" text="UAH: 100" textFill="#495146">
-                     <font>
-                        <Font name="Franklin Gothic Demi" size="23.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="nowEur" layoutX="71.0" layoutY="118.0" text="EUR: 100" textFill="#495146">
-                     <font>
-                        <Font name="Franklin Gothic Demi" size="23.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="nowUsd" layoutX="71.0" layoutY="153.0" text="USD: 100" textFill="#495146">
+                  <Label fx:id="totalUsdLabel" layoutX="120.0" layoutY="5.0" prefHeight="26.0" prefWidth="101.0" text="3000">
                      <font>
                         <Font name="Franklin Gothic Demi" size="23.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <Label fx:id="s21" layoutX="334.0" layoutY="14.0" text="All your money in usd:" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="23.0" />
-               </font>
-            </Label>
-            <Label fx:id="totalUsdLabel" layoutX="560.0" layoutY="14.0" prefHeight="26.0" prefWidth="158.0" text="3000" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="23.0" />
-               </font>
-            </Label>
          </children>
         </AnchorPane>
-        <Label layoutX="14.0" layoutY="16.0" text="inex ">
-            <font>
-                <Font name="Franklin Gothic Medium Cond" size="60.0" />
-            </font>
-        </Label>
-        <Label layoutX="108.0" layoutY="10.0" text="manage your money - manage your life">
-            <font>
-                <Font name="Franklin Gothic Medium Cond" size="30.0" />
-            </font>
-        </Label>
-      <Button fx:id="signOutButton" layoutX="14.0" layoutY="95.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="131.0" style="-fx-background-color: #2d7a55; -fx-border-color: #000000; -fx-border-width: 3;" text="Sign out " textFill="WHITE">
+      <Button fx:id="signOutButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="131.0" style="-fx-background-color: #2d7a55; -fx-border-color: A3A46E; -fx-border-width: 3;" text="Sign out " textFill="WHITE">
          <font>
             <Font name="Franklin Gothic Demi" size="18.0" />
-         </font></Button>
-      <Label fx:id="nameLabel" layoutX="238.0" layoutY="156.0" text="Aloha, username! Got a lot of money today?">
-         <font>
-            <Font name="Franklin Gothic Medium" size="28.0" />
          </font>
-      </Label>
-      <AnchorPane layoutX="688.0" layoutY="16.0" prefHeight="131.0" prefWidth="300.0" style="-fx-background-color: #d9e0a3; -fx-border-color: A3A46E; -fx-border-width: 3;">
+      </Button>
+      <AnchorPane layoutX="688.0" layoutY="14.0" prefHeight="131.0" prefWidth="300.0" style="-fx-background-color: #d9e0a3; -fx-border-color: A3A46E; -fx-border-width: 3;">
          <children>
             <Label layoutX="77.0" layoutY="1.0" text="Exchange rate" textFill="#bc7d00">
                <font>
