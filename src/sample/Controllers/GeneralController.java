@@ -3,6 +3,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +26,7 @@ import sample.Entries.Currency;
 import sample.Entries.Income;
 import sample.Entries.Money;
 import sample.Entries.User;
+import sample.LineChart;
 import sample.RateParser;
 import sample.usdConverter;
 
@@ -107,10 +112,22 @@ public class GeneralController {
     private Label totalUsdLabel;
 
     @FXML
-    private Label monthLabel;
+    private javafx.scene.chart.LineChart<?, ?> incomeChart;
+
+    @FXML
+    private CategoryAxis x;
+
+    @FXML
+    private NumberAxis y;
+
+
 
     @FXML
     void initialize() {
+
+        XYChart.Series series = new XYChart.Series();
+        series.getData().add(new XYChart.Data("1", 23));
+        incomeChart.getData().addAll(series);
 
         usdConverter converter = new usdConverter();
         DatabaseHandler dbHandler = new DatabaseHandler();

@@ -50,7 +50,4 @@ public class RateParser {
         return kursRUB.text();
     }
 
-    public static void main(String[] args) {
-
-    }
 }

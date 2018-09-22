@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="inex:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/inex_jar</output-path>
-    <root id="archive" name="inex.jar">
-      <element id="module-output" name="inex" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/mysql-connector-java-8.0.11/mysql-connector-java-8.0.11.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>

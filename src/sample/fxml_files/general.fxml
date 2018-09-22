@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
@@ -115,28 +116,22 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="381.0" layoutY="156.0" prefHeight="36.0" prefWidth="242.0" style="-fx-background-color: #bcffd5; -fx-border-color: A3A46E; -fx-border-width: 3;">
-               <children>
-                  <Label fx:id="s21" layoutX="53.0" layoutY="5.0" prefHeight="26.0" prefWidth="85.0" text="Total: ">
-                     <font>
-                        <Font name="Franklin Gothic Demi" size="23.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="totalUsdLabel" layoutX="120.0" layoutY="5.0" prefHeight="26.0" prefWidth="101.0" text="3000">
-                     <font>
-                        <Font name="Franklin Gothic Demi" size="23.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
+            <LineChart fx:id="incomeChart" layoutX="224.0" prefHeight="205.0" prefWidth="547.0" style="-fx-background-color: #ffffff;" title="Income">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" fx:id="x" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="y" side="LEFT" />
+              </yAxis>
+            </LineChart>
          </children>
         </AnchorPane>
-      <Button fx:id="signOutButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="131.0" style="-fx-background-color: #2d7a55; -fx-border-color: A3A46E; -fx-border-width: 3;" text="Sign out " textFill="WHITE">
+      <Button fx:id="signOutButton" layoutX="857.0" layoutY="14.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="131.0" style="-fx-background-color: #2d7a55; -fx-border-color: A3A46E; -fx-border-width: 3;" text="Sign out " textFill="WHITE">
          <font>
             <Font name="Franklin Gothic Demi" size="18.0" />
          </font>
       </Button>
-      <AnchorPane layoutX="688.0" layoutY="14.0" prefHeight="131.0" prefWidth="300.0" style="-fx-background-color: #d9e0a3; -fx-border-color: A3A46E; -fx-border-width: 3;">
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="131.0" prefWidth="300.0" style="-fx-background-color: #d9e0a3; -fx-border-color: A3A46E; -fx-border-width: 3;">
          <children>
             <Label layoutX="77.0" layoutY="1.0" text="Exchange rate" textFill="#bc7d00">
                <font>
@@ -210,5 +205,29 @@
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane layoutX="381.0" layoutY="145.0" prefHeight="36.0" prefWidth="242.0" style="-fx-background-color: #7b8daa; -fx-border-color: A3A46E; -fx-border-width: 3;">
+         <children>
+            <Label fx:id="s21" layoutX="53.0" layoutY="5.0" prefHeight="26.0" prefWidth="85.0" text="Total: ">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalUsdLabel" layoutX="121.0" layoutY="5.0" prefHeight="26.0" prefWidth="101.0" text="3000">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="signOutButton1" layoutX="726.0" layoutY="14.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="131.0" style="-fx-background-color: #2d7a55; -fx-border-color: A3A46E; -fx-border-width: 3;" text="GitHub" textFill="WHITE">
+         <font>
+            <Font name="Franklin Gothic Demi" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="signOutButton2" layoutX="595.0" layoutY="14.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="131.0" style="-fx-background-color: #2d7a55; -fx-border-color: A3A46E; -fx-border-width: 3;" text="Mail us" textFill="WHITE">
+         <font>
+            <Font name="Franklin Gothic Demi" size="18.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

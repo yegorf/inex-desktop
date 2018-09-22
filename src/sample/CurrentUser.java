@@ -4,4 +4,5 @@ public class CurrentUser {
     public static String username;
     public static String password;
     public static String email;
+    public static String achive;
 }

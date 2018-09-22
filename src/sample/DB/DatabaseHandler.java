@@ -1,5 +1,5 @@
 package sample.DB;
-import javafx.beans.Observable;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sample.CurrentUser;
@@ -7,12 +7,8 @@ import sample.Entries.Currency;
 import sample.Entries.Income;
 import sample.Entries.Money;
 import sample.Entries.User;
-
-import javax.swing.table.TableColumn;
-import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class DatabaseHandler implements Configs {
 
@@ -31,9 +27,7 @@ public class DatabaseHandler implements Configs {
         return dbConnection;
     }
 
-
     public ArrayList<User> getAllUsersInformation() throws SQLException, ClassNotFoundException {
-        final char dm = (char)34;
         ArrayList<User> usersList = new ArrayList<User>();
         String select = "SELECT * FROM " + ConstUser.TABLE;
 
@@ -84,7 +78,6 @@ public class DatabaseHandler implements Configs {
                         break;
                     default: income.setCurrency(Currency.UNKNOWN);
                 }
-
                 obsList.add(income);
             }
 
@@ -99,7 +92,6 @@ public class DatabaseHandler implements Configs {
 
 
     public void signUpUser(User user) {
-
         String insert = "INSERT INTO " + ConstUser.TABLE + "(" +
                 ConstUser.NAME + "," + ConstUser.PASSWORD + "," +
                 ConstUser.EMAIL + ")" +
@@ -120,7 +112,6 @@ public class DatabaseHandler implements Configs {
     }
 
     public void addIncome(Income income) {
-
         String insert = "INSERT INTO " + ConstIncome.TABLE + "(" +
                 ConstIncome.USER + "," + ConstIncome.SUM + "," +
                 ConstIncome.DATE + "," + ConstIncome.REASON + "," +
@@ -144,11 +135,9 @@ public class DatabaseHandler implements Configs {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     public ResultSet getUser(User user) {
-
         ResultSet resSet = null;
 
         String select = "SELECT * FROM " + ConstUser.TABLE + " WHERE " +
@@ -165,7 +154,6 @@ public class DatabaseHandler implements Configs {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         return resSet;
     }
 }

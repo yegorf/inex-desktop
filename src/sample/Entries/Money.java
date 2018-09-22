@@ -16,10 +16,6 @@ public class Money {
         return list;
     }
 
-    public void setList(ObservableList<Income> list) {
-        this.list = list;
-    }
-
     public ArrayList<Double> getIncome() {
         double sumRub = 0.0;
         double sumUah = 0.0;

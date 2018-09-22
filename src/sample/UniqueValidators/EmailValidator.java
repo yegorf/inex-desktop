@@ -19,9 +19,11 @@ public class EmailValidator extends Validator{
         Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(inputStr);
 
-        if(matcher.matches())
+        if(matcher.matches()) {
             return true;
-        else
+        }
+        else {
             return false;
+        }
     }
 }

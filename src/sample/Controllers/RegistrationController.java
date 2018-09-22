@@ -56,7 +56,6 @@ public class RegistrationController {
                 validation = false;
             }
 
-
             if(validation) {
                 User user = new User(name, password, email);
 

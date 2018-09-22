@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -17,17 +16,9 @@ import sample.CurrentUser;
 import sample.DB.DatabaseHandler;
 import sample.Entries.User;
 import sample.MyAlert;
-import sample.mail.MailChecking;
 
-import javax.mail.MessagingException;
 
 public class Controller {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button signUpButton;
@@ -43,7 +34,6 @@ public class Controller {
 
     @FXML
     void initialize() {
-
         signInButton.setOnAction(event -> {
             String loginText = loginField.getText().trim();
             String loginPassword = passwordField.getText().trim();
